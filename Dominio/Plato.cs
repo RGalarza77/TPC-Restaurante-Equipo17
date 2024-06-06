@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    internal class Plato
+    internal class Plato : Insumo
     {
+        public List<Ingrediente> Ingredientes; 
+        //postre ?
     }
 }
