@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Carrito.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="ModuloMozo.aspx" />
     <Content Include="Pedido.aspx" />
     <Content Include="Platos.aspx" />
     <Content Include="Principal.aspx" />
@@ -92,6 +93,12 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ModuloMozo.aspx.cs">
+      <DependentUpon>ModuloMozo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModuloMozo.aspx.designer.cs">
+      <DependentUpon>ModuloMozo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido.aspx.cs">
       <DependentUpon>Pedido.aspx</DependentUpon>
