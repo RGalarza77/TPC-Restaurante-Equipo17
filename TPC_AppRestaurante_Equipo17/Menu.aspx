@@ -12,8 +12,8 @@
                     <div class="card" style="width: 18rem">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><%#Eval("Name") %></h5>
-                            <p class="card-text"><%#Eval("Categoria") %></p>
+                            <h5 class="card-title"><%#Eval("Nombre") %></h5>
+                            <p class="card-text"><%#Eval("Descripcion") %></p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><%#Eval("Precio") %></li>

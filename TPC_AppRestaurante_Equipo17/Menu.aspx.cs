@@ -13,11 +13,11 @@ namespace TPC_AppRestaurante_Equipo17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            InsumoNegocio insNeg = new InsumoNegocio();
-            List<Insumo> listaInsumos = new List<Insumo>();
-            listaInsumos = insNeg.listar();
+            PlatoNegocio PlaNeg = new PlatoNegocio();
+            List<Plato> lista = new List<Plato>();
+            lista = PlaNeg.listar();
 
-            repInsumos.DataSource = listaInsumos;
+            repInsumos.DataSource = lista;
             repInsumos.DataBind();
         }
 
