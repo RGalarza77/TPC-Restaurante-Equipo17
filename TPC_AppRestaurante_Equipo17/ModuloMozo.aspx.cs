@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TPC_AppRestaurante_Equipo17
 {
-    public partial class frmAgregarMesa : System.Web.UI.Page
+    public partial class ModuloMozo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

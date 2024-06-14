@@ -14,7 +14,7 @@ CREATE TABLE Ingredientes(
 GO
 CREATE TABLE ImagenesIngredientes(
 	Id INT IDENTITY(1,1) NOT NULL,
-	IdIngrediente INT NOT NULL FOREIGN KEY REFERENCES Ingredientes(Id),
+	IdIngrediente INT NOT NULL,
 	ImagenUrl VARCHAR(1000) NOT NULL,
 )
 GO
