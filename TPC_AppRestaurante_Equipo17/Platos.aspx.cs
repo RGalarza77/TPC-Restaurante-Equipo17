@@ -14,12 +14,21 @@ namespace TPC_AppRestaurante_Equipo17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            PlatoNegocio PlaNeg = new PlatoNegocio();
+            List<Plato> lista = new List<Plato>();
+            lista = PlaNeg.listar();
+            if (!IsPostBack)
+            {
+                repPlatos.DataSource = lista;
+                repPlatos.DataBind();
+
+            }
 
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 Plato plato = new Plato();
@@ -33,11 +42,11 @@ namespace TPC_AppRestaurante_Equipo17
 
                 plato.Id = negocio.agregar(plato);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
             }
-            
+
 
 
 

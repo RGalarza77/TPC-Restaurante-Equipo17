@@ -7,6 +7,47 @@
         <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#Agregar" role="button">NUEVO PLATO</a>
     </div>
 
+    <br />
+
+
+    <asp:Repeater ID="repPlatos" runat="server">
+        <ItemTemplate>
+            <div class="col-2"></div>
+            <div class="col-6">
+
+                <div class="card mb-3" style="max-width: 2500px;">
+                    <div class="row g-0">
+                        <div class="col-3">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-6">
+                            <div class="card-body">
+                                <h5 class="card-title"><%#Eval("Nombre") %></h5>
+                                <p class="card-text"><%#Eval("Descripcion") %></p>
+                                <p class="card-text"><small class="text-body-secondary"><%#Eval("Precio") %></small></p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card-body">
+                                <asp:Button Text="Imagenes" CssClass="btn btn-secundary" runat="server" />
+                                <asp:LinkButton Text="Modificar" ID="btnModificar" CssClass="btn btn-secundary" data-bs-toggle="offcanvas" data-bs-target="#Agregar" runat="server" />
+                                <asp:Button Text="Eliminar" CssClass="btn btn-secundary" runat="server" />
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+
+
+
+
+
     <div class="offcanvas offcanvas-start" tabindex="-1" id="Agregar" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <h3 class="offcanvas-title display-5" id="offcanvasExampleLabel">Agregar Plato</h3>
