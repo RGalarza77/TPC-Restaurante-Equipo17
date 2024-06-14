@@ -67,9 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAgregarMesa.aspx" />
+    <Content Include="MesaAbierta.aspx" />
+    <Content Include="MesaCerrada.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="ModuloMozo.aspx" />
+    <Content Include="Mesas.aspx" />
     <Content Include="Pedido.aspx" />
     <Content Include="Platos.aspx" />
     <Content Include="Principal.aspx" />
@@ -77,6 +80,27 @@
     <Content Include="Menu.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAgregarMesa.aspx.cs">
+      <DependentUpon>frmAgregarMesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgregarMesa.aspx.designer.cs">
+      <DependentUpon>frmAgregarMesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MesaAbierta.aspx.cs">
+      <DependentUpon>MesaAbierta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MesaAbierta.aspx.designer.cs">
+      <DependentUpon>MesaAbierta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MesaCerrada.aspx.cs">
+      <DependentUpon>MesaCerrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MesaCerrada.aspx.designer.cs">
+      <DependentUpon>MesaCerrada.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -94,12 +118,15 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Mesas.aspx.cs">
+      <DependentUpon>Mesas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     <Compile Include="ModuloMozo.aspx.cs">
       <DependentUpon>ModuloMozo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ModuloMozo.aspx.designer.cs">
-      <DependentUpon>ModuloMozo.aspx</DependentUpon>
+    <Compile Include="Mesas.aspx.designer.cs">
+      <DependentUpon>Mesas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido.aspx.cs">
       <DependentUpon>Pedido.aspx</DependentUpon>
