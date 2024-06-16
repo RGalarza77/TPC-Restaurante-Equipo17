@@ -7,27 +7,28 @@ using Dominio;
 
 namespace Negocio
 {
-    public class MesaNegocio
+    public class ClienteNegocio
     {
-        public List<Mesa> listar()
+        public List<Cliente> listar()
         {
-            List<Mesa> lista = new List<Mesa>();
+            List<Cliente> lista = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT M.Id, M.Numero,M.IdSala, S.Nombre AS NombreSala FROM Mesas M LEFT JOIN Salas S ON M.IdSala = S.Id;"); 
+                datos.setearConsulta("SELECT Documento, NumeroCliente, Nombre, Apellido, Activo FROM Clientes;");
                 /*modificar consulta*/
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Mesa aux = new Mesa();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.NumeroMesa = (int)datos.Lector["Numero"];
-                    aux.Sala = new Sala();
-                    aux.Sala.Id = (int)datos.Lector["IdSala"];
-                    aux.Sala.Nombre = (string)datos.Lector["NombreSala"];
+                    Cliente aux = new Cliente();
+                    aux.Documento = (int)datos.Lector["Documento"];
+                    aux.Numero = (int)datos.Lector["NumeroCliente"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Estado = (bool)datos.Lector["Activo"];
+
 
                     lista.Add(aux);
                 }

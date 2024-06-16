@@ -34,21 +34,10 @@
                 </div>
 
             </div>
+            
+            <%--SALON--%>
+            <asp:DropDownList runat="server" ID="ddlSalones" CssClass="form-select form-select-lg mb-3" aria-label="Large select example"></asp:DropDownList>
 
-            <p class="fs-5">Sucursal</p>
-            <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>Sucursal 1</option>
-                <option value="1">Sucursal 2</option>
-                <option value="2">Sucursal 3</option>
-                <option value="3">Sucursal 4</option>
-            </select>
-
-            <select class="form-select form-select-sm" aria-label="Small select example">
-                <option selected>Salon</option>
-                <option value="1">Piso 1</option>
-                <option value="2">Terraza</option>
-                <option value="3">Vereda</option>
-            </select>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                 <p class="fs-1">MESAS DISPONIBLES</p>

@@ -11,6 +11,14 @@ namespace TPC_AppRestaurante_Equipo17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+            }
 
         }
 

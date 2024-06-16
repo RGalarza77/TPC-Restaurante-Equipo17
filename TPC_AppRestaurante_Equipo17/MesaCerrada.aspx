@@ -36,27 +36,31 @@
 
                         <label>Personas <span style="color: #FF0000; font-weight: bold">*</span></label>
                         <asp:Button ID="btnRestar" runat="server" CssClass="btn btn-success" Text=" - " OnClick="btnRestar_Click" />
-                        <asp:Label ID="lblCantidadPersonas" runat="server" CssClass="border border-top-0" Width="44">1 <%#Eval("CantidadPersonas") %></asp:Label>
+                        <asp:Label ID="lblCantidadPersonas" runat="server" CssClass="border border-top-0" Width="44"> 0 </asp:Label>
                         <asp:Button ID="btnSumar" runat="server" CssClass="btn btn-success" Text=" + " OnClick="btnSumar_Click" />
 
                     </div>
 
                 </div>
+
                 <%--Cliente--%>
 
-                <div class="dropdown-center">
-
-
                     <label>Cliente  </label>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Seleccione un cliente
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Cliente 1</a></li>
-                        <li><a class="dropdown-item" href="#">Cliente 2</a></li>
-                        <li><a class="dropdown-item" href="#">Cliente 3</a></li>
-                    </ul>
+                <div >
+                    <asp:RadioButton ID="chkClienteRegistrado" runat="server" CssClass="form-check-input" Text="Cliente registrado" AutoPostBack="true" OnCheckedChanged="chkClienteRegistrado_CheckedChanged" GroupName="chkCliente"></asp:RadioButton>
+                    
+                    <asp:DropDownList runat="server" ID="ddlClientes" CssClass="btn btn-secondary dropdown-toggle" Enabled="false">
+                    </asp:DropDownList>
                 </div>
+                
+                <div>
+                    <asp:RadioButton ID="chkClienteNoRegistrado" runat="server" CssClass="form-check-input" Text="Cliente Anonimo" AutoPostBack="true" OnCheckedChanged="chkClienteNoRegistrado_CheckedChanged" GroupName="chkCliente"></asp:RadioButton>
+               </div>
+ 
+
+
+
+
                 <%--Mozo--%>
 
                 <div class="dropdown-center">
