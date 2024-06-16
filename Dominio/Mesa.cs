@@ -8,11 +8,11 @@ namespace Dominio
 {
     public class Mesa
     {
-        public int Id {get; set;}
+        public int Id { get; set; }
         public int NumeroMesa { get; set; }
-        public string Sucursal { get; set; }
+        public Sala Sala { get; set; }
         public int CantidadPersonas { get; set; }
-        public int NumeroCliente { get; set; }
+        public Cliente Cliente { get; set; }
         public int MozoAsignado { get; set; }
         public string Comentario { get; set; }
         public string Estado { get; set; } /* puede ser: 1-mesa libre, 2-mesa ocupada, 3-en proceso de pago*/
