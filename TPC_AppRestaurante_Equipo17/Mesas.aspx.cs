@@ -13,18 +13,29 @@ namespace TPC_AppRestaurante_Equipo17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MesaNegocio negocioMesa = new MesaNegocio();
-            List<Mesa> listaMesas = negocioMesa.listar();
-
-            SalaNegocio negocioSala = new SalaNegocio();
 
             try
             {
+                MesaNegocio negocioMesa = new MesaNegocio();
+                SalaNegocio negocioSala = new SalaNegocio();
+
+                if (Session["listaMesas"] == null)
+                {
+
+                    Session.Add("listaMesas", negocioMesa.listar()); /* guardo la lista de mesas en sesion*/
+                }
+
                 if (!IsPostBack)
                 {
+                    List<Mesa> listaMesas = negocioMesa.listar();
+
+                    
+
+                    //Mesas
                     repMesas.DataSource=listaMesas;
                     repMesas.DataBind();
 
+                    //Salones
                     ddlSalones.DataSource = negocioSala.listar();
                     ddlSalones.DataTextField = "Nombre";
                     ddlSalones.DataValueField = "Id";

@@ -24,7 +24,9 @@ namespace TPC_AppRestaurante_Equipo17
 
         protected void btnCerrarMesa_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MesaCerrada.aspx");
+            string idMesa = Request.QueryString["id"].ToString();
+
+            Response.Redirect("MesaCerrada.aspx?Id="+ idMesa);
         }
     }
 }

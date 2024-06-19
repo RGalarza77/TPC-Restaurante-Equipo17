@@ -30,31 +30,34 @@
 
                 <%--Pesonas--%>
 
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-
                     <div style="display: block; text-align: center; margin-left: 20px;">
-
                         <label>Personas <span style="color: #FF0000; font-weight: bold">*</span></label>
-                        <asp:Button ID="btnRestar" runat="server" CssClass="btn btn-success" Text=" - " OnClick="btnRestar_Click" />
-                        <asp:Label ID="lblCantidadPersonas" runat="server" CssClass="border border-top-0" Width="44"> 0 </asp:Label>
-                        <asp:Button ID="btnSumar" runat="server" CssClass="btn btn-success" Text=" + " OnClick="btnSumar_Click" />
 
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+
+                            <asp:Button ID="btnRestar" runat="server" CssClass="btn btn-success" Text=" - " OnClick="btnRestar_Click" CommandArgument='<% #Eval("Id") %>'/>
+                            <div style="display: block; text-align: center; margin: auto;">
+                                <asp:TextBox ID="txtCantidadPersonas" runat="server" Width="50">1</asp:TextBox>
+                            </div>
+                           <asp:Button ID="btnSumar" runat="server" CssClass="btn btn-success" Text=" + " OnClick="btnSumar_Click" CommandArgument='<% #Eval("Id") %>' />
+                        </div>
                     </div>
 
-                </div>
+                
 
                 <%--Cliente--%>
 
                     <label>Cliente  </label>
                 <div >
-                    <asp:RadioButton ID="chkClienteRegistrado" runat="server" CssClass="form-check-input" Text="Cliente registrado" AutoPostBack="true" OnCheckedChanged="chkClienteRegistrado_CheckedChanged" GroupName="chkCliente"></asp:RadioButton>
+                    <asp:RadioButton ID="chkClienteRegistrado" runat="server" CssClass="form-check-input" Text="Cliente registrado" AutoPostBack="true" OnCheckedChanged="chkClienteRegistrado_CheckedChanged" GroupName="chkCliente" BorderColor="White"></asp:RadioButton>
                     
                     <asp:DropDownList runat="server" ID="ddlClientes" CssClass="btn btn-secondary dropdown-toggle" Enabled="false">
                     </asp:DropDownList>
                 </div>
                 
                 <div>
-                    <asp:RadioButton ID="chkClienteNoRegistrado" runat="server" CssClass="form-check-input" Text="Cliente Anonimo" AutoPostBack="true" OnCheckedChanged="chkClienteNoRegistrado_CheckedChanged" GroupName="chkCliente"></asp:RadioButton>
+                    <asp:RadioButton ID="chkClienteNoRegistrado" runat="server" CssClass="form-check-input" Text="Cliente Anonimo" AutoPostBack="true" OnCheckedChanged="chkClienteNoRegistrado_CheckedChanged" GroupName="chkCliente" BorderColor="White"></asp:RadioButton>
                </div>
  
 

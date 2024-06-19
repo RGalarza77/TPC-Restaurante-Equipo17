@@ -47,27 +47,28 @@
 
                 <ItemTemplate>
                     <div class="col-4">
+                    <div class="container">
 
+                        <asp:LinkButton ID="Button1" runat="server" CssClass="btn btn-primary" Text='<%# "Mesa " + Eval("NumeroMesa") %>'  data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>' 
+                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>'/>
+                        
 
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                            <%#"Mesa "+ Eval("NumeroMesa") %>
-                        </button>
-
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id='<%# "offcanvasExample" + Container.ItemIndex %>' aria-labelledby='<%# "offcanvasExampleLabel" + Container.ItemIndex %>'>
                             
                             <div class="offcanvas-header">
                                 <label><%#"Mesa "+ Eval("NumeroMesa") %></label>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <iframe src="MesaCerrada.aspx" style="width:100%; height:100%; border:none;"></iframe>
+                                <iframe src='<%# "MesaCerrada.aspx?Id=" + Eval("Id") %>' style="width:100%; height:100%; border:none; "></iframe>
                             </div>
                         </div>
 
-
                     </div>
-                </ItemTemplate>
+                    </div>
+               </ItemTemplate>
             </asp:Repeater>
+
        </div>
 
 
