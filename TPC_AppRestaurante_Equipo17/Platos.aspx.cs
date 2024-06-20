@@ -51,5 +51,10 @@ namespace TPC_AppRestaurante_Equipo17
 
 
         }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

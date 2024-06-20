@@ -30,7 +30,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <asp:Button Text="Imagenes" CssClass="btn btn-secundary" runat="server" />
-                                <asp:LinkButton Text="Modificar" ID="btnModificar" CssClass="btn btn-secundary" data-bs-toggle="offcanvas" data-bs-target="#Agregar" runat="server" />
+                                <asp:LinkButton Text="Modificar" ID="btnModificar" CssClass="btn btn-secundary" data-bs-toggle="offcanvas" data-bs-target="#Agregar" runat="server" onclick="btnModificar_Click" />
                                 <asp:Button Text="Eliminar" CssClass="btn btn-secundary" runat="server" />
 
 
@@ -57,7 +57,7 @@
             <div>
 
                 <label for="txtCodProd" class="form-label">Codigo Producto</label>
-                <asp:TextBox runat="server" ID="txtCod" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtCod" CssClass="form-control"/>
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
                 <label for="txtDescripcion" class="form-label">Descripcion</label>
