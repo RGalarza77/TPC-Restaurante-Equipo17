@@ -18,7 +18,7 @@ CREATE TABLE ImagenesIngredientes(
 	ImagenUrl VARCHAR(1000) NOT NULL,
 )
 GO
-CREATE TABLE productos (
+CREATE TABLE platos (
     id INT PRIMARY KEY IDENTITY(1,1),
     codigo VARCHAR(50) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
