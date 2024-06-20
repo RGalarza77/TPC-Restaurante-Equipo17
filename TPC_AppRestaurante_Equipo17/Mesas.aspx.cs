@@ -30,16 +30,17 @@ namespace TPC_AppRestaurante_Equipo17
                     List<Mesa> listaMesas = negocioMesa.listar();
 
                     
-
-                    //Mesas
-                    repMesas.DataSource=listaMesas;
-                    repMesas.DataBind();
-
-                    //Salones
+                    //Cargar Salones
                     ddlSalones.DataSource = negocioSala.listar();
                     ddlSalones.DataTextField = "Nombre";
                     ddlSalones.DataValueField = "Id";
                     ddlSalones.DataBind();
+
+                    
+                    int idSala=int.Parse(ddlSalones.Items[0].Value);
+                    //Mostrar Mesas
+                    repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
+                    repMesas.DataBind();
 
                 }
 
@@ -51,7 +52,14 @@ namespace TPC_AppRestaurante_Equipo17
 
         }
 
-   
+        protected void ddlSalones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idSala = int.Parse(ddlSalones.SelectedItem.Value);
+
+            //Mostrar Mesas
+            repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x=> x.Sala.Id == idSala);
+            repMesas.DataBind();
+        }
     }
 
 }

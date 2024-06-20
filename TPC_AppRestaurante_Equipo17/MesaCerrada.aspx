@@ -24,41 +24,47 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:scriptmanager>
         <div class="container">
 
             <div class="row">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <%--Pesonas--%>
 
-                <%--Pesonas--%>
+                        <div style="display: block; text-align: center; margin-left: 20px;">
+                            <label>Personas <span style="color: #FF0000; font-weight: bold">*</span></label>
 
-                    <div style="display: block; text-align: center; margin-left: 20px;">
-                        <label>Personas <span style="color: #FF0000; font-weight: bold">*</span></label>
-
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
 
-                            <asp:Button ID="btnRestar" runat="server" CssClass="btn btn-success" Text=" - " OnClick="btnRestar_Click" CommandArgument='<% #Eval("Id") %>'/>
-                            <div style="display: block; text-align: center; margin: auto;">
-                                <asp:TextBox ID="txtCantidadPersonas" runat="server" Width="50">1</asp:TextBox>
+                                <asp:Button ID="btnRestar" runat="server" CssClass="btn btn-success" Text=" - " OnClick="btnRestar_Click" />
+                                <div style="display: block; text-align: center; margin: auto;">
+                                    <asp:TextBox ID="txtCantidadPersonas" runat="server" Width="50">1</asp:TextBox>
+                                </div>
+                                <asp:Button ID="btnSumar" runat="server" CssClass="btn btn-success" Text=" + " OnClick="btnSumar_Click" />
                             </div>
-                           <asp:Button ID="btnSumar" runat="server" CssClass="btn btn-success" Text=" + " OnClick="btnSumar_Click" CommandArgument='<% #Eval("Id") %>' />
                         </div>
-                    </div>
 
-                
 
-                <%--Cliente--%>
 
-                    <label>Cliente  </label>
-                <div >
-                    <asp:RadioButton ID="chkClienteRegistrado" runat="server" CssClass="form-check-input" Text="Cliente registrado" AutoPostBack="true" OnCheckedChanged="chkClienteRegistrado_CheckedChanged" GroupName="chkCliente" BorderColor="White"></asp:RadioButton>
-                    
-                    <asp:DropDownList runat="server" ID="ddlClientes" CssClass="btn btn-secondary dropdown-toggle" Enabled="false">
-                    </asp:DropDownList>
-                </div>
-                
-                <div>
-                    <asp:RadioButton ID="chkClienteNoRegistrado" runat="server" CssClass="form-check-input" Text="Cliente Anonimo" AutoPostBack="true" OnCheckedChanged="chkClienteNoRegistrado_CheckedChanged" GroupName="chkCliente" BorderColor="White"></asp:RadioButton>
-               </div>
+                        <%--Cliente--%>
+
+
+                        <label>Cliente  </label>
+                        <div>
+                            <asp:RadioButton ID="chkClienteRegistrado" runat="server" CssClass="form-check-input" Text="Cliente registrado" AutoPostBack="true" OnCheckedChanged="chkClienteRegistrado_CheckedChanged" GroupName="chkCliente" BorderColor="White"></asp:RadioButton>
+
+                            <asp:DropDownList runat="server" ID="ddlClientes" CssClass="btn btn-secondary dropdown-toggle" Enabled="false">
+                            </asp:DropDownList>
+                        </div>
+
+                        <div>
+                            <asp:RadioButton ID="chkClienteNoRegistrado" runat="server" CssClass="form-check-input" Text="Cliente Anonimo" AutoPostBack="true" OnCheckedChanged="chkClienteNoRegistrado_CheckedChanged" GroupName="chkCliente" BorderColor="White" Checked="true"></asp:RadioButton>
+                        </div>
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
  
 
 
@@ -70,14 +76,8 @@
 
 
                     <label>Mozo  </label>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Seleccione un mozo
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Mozo 1</a></li>
-                        <li><a class="dropdown-item" href="#">Mozo 2</a></li>
-                        <li><a class="dropdown-item" href="#">Mozo 3</a></li>
-                    </ul>
+
+                    <asp:DropDownList runat="server" ID="ddlMozo" CssClass="btn btn-secondary dropdown-toggle"></asp:DropDownList>
                 </div>
 
                 <%--Comentario--%>
