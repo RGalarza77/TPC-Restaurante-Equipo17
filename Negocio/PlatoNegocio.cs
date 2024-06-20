@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select  Nombre, Descripcion, Precio  from PRODUCTOS");
+                datos.setearConsulta("select  Nombre, Descripcion, Precio  from Platos");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -47,7 +47,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("insert into PRODUCTOS (Codigo, Nombre, Descripcion, Precio) output inserted.id values (@Codigo,@Nombre,@Descripcion,@Precio)");
+                datos.setearConsulta("insert into Platos (Codigo, Nombre, Descripcion, Precio) output inserted.id values (@Codigo,@Nombre,@Descripcion,@Precio)");
                 datos.setearParametro("@Codigo", nuevo.Codigo);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
