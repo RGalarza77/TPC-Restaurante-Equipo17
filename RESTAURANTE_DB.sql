@@ -18,14 +18,13 @@ CREATE TABLE ImagenesIngredientes(
 	ImagenUrl VARCHAR(1000) NOT NULL,
 )
 GO
-CREATE TABLE Platos(
-    Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    Nombre VARCHAR(50) NOT NULL,
-    Categoria VARCHAR(50) NOT NULL,
-    Precio MONEY NULL CHECK(Precio >=0),
-    CuponDescuento VARCHAR(50) NULL,
-    Disponible BIT CHECK(Disponible IN (0,1)),
-)
+CREATE TABLE platos (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    codigo VARCHAR(50) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion varchar(200),
+    precio DECIMAL(10, 2) NOT NULL
+);
 
 
 INSERT INTO Ingredientes VALUES ('tomate','2024-01-10',10,50),('lechuga','2024-10-11',12,15), ('milanesa','2024-01-10',1000,5)
