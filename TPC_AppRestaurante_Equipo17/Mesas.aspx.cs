@@ -45,6 +45,7 @@ namespace TPC_AppRestaurante_Equipo17
                 }
 
 
+
             }catch(Exception ex)
             {
                 Session.Add("error", ex.ToString());
@@ -60,6 +61,37 @@ namespace TPC_AppRestaurante_Equipo17
             repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x=> x.Sala.Id == idSala);
             repMesas.DataBind();
         }
+
+
+        public string ObtenerIframeSrc(object estado, object id) /* mostrar iframe depende del estado de la mesa*/
+        {
+            if (estado != null && estado.ToString() == "1")
+            {
+                return "MesaCerrada.aspx?Id=" + id.ToString();
+            }
+            else
+            {
+                return "MesaAbierta.aspx?Id=" + id.ToString();
+            }
+        }
+
+        public string ObtenerButtonClass(object estado) /*cambiar de color el boton depende del estado mesa*/
+        {
+            if (estado != null && estado.ToString() == "1")
+            {
+                return "btn btn-success"; /* Botón verde para estado 1 - mesa libre*/
+            }
+            else if(estado != null && estado.ToString() == "2")
+            {
+                return "btn btn-danger"; /* Botón rojo para estado 2 - mesa ocupada*/
+            }
+            else
+            {
+                return "btn btn-danger"; /* Botón azul para estado 3 - en proceso de pago*/
+            }
+        }
+
+
     }
 
 }

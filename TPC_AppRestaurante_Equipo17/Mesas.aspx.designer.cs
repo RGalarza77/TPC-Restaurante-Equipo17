@@ -24,6 +24,15 @@ namespace TPC_AppRestaurante_Equipo17
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// Control upMesas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upMesas;
+
+        /// <summary>
         /// Control ddlSalones.
         /// </summary>
         /// <remarks>

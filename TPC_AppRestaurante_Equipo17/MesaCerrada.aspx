@@ -65,15 +65,10 @@
 
                     </ContentTemplate>
                 </asp:UpdatePanel>
- 
-
-
-
 
                 <%--Mozo--%>
 
                 <div class="dropdown-center">
-
 
                     <label>Mozo  </label>
 

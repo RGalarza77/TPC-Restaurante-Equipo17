@@ -36,7 +36,7 @@
             </div>
             
             <%--SALON--%>
-        <asp:UpdatePanel runat="server">
+        <asp:UpdatePanel runat="server" ID="upMesas">
             <ContentTemplate>
                 <asp:DropDownList runat="server" ID="ddlSalones" CssClass="form-select form-select-lg mb-3" aria-label="Large select example" AutoPostBack="true" OnSelectedIndexChanged="ddlSalones_SelectedIndexChanged"></asp:DropDownList>
 
@@ -51,7 +51,7 @@
                         <div class="col-4">
                             <div class="container">
 
-                                <asp:LinkButton ID="Button1" runat="server" CssClass="btn btn-primary" Text='<%# "Mesa " + Eval("NumeroMesa") %>' data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>'
+                                <asp:LinkButton ID="Button1" runat="server" CssClass='<%# ObtenerButtonClass(Eval("Estado")) %>' Text='<%# "Mesa " + Eval("NumeroMesa") %>' data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>'
                                     aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>' />
 
 
@@ -62,7 +62,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                     </div>
                                     <div class="offcanvas-body">
-                                        <iframe src='<%# "MesaCerrada.aspx?Id=" + Eval("Id") %>' style="width: 100%; height: 100%; border: none;"></iframe>
+                                        <iframe src='<%# ObtenerIframeSrc(Eval("Estado"), Eval("Id")) %>' style="width: 100%; height: 100%; border: none;"></iframe>
                                     </div>
                                 </div>
 

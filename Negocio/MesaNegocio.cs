@@ -28,6 +28,7 @@ namespace Negocio
                     aux.Sala = new Sala();
                     aux.Sala.Id = (int)datos.Lector["IdSala"];
                     aux.Sala.Nombre = (string)datos.Lector["NombreSala"];
+                    aux.Estado = 1; /*mesa libre*/
 
                     lista.Add(aux);
                 }

@@ -95,9 +95,12 @@ namespace TPC_AppRestaurante_Equipo17
                 //Mozo
                 mesa.MozoAsignado = int.Parse(ddlMozo.SelectedValue);
 
+                //Estado
+                mesa.Estado = 2; /* 2- mesa ocupada*/
+
 
                 /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
-                string idMesaAbierta = Request.QueryString["id"].ToString();
+                string idMesaAbierta = Request.QueryString["Id"].ToString();
 
                 Response.Redirect("MesaAbierta.aspx?Id=" + idMesaAbierta);
             }
