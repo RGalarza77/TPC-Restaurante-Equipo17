@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frmAgregarMesa.aspx" />
     <Content Include="MesaAbierta.aspx" />
     <Content Include="MesaCerrada.aspx" />
     <Content Include="Carrito.aspx" />
@@ -80,13 +79,6 @@
     <Content Include="Menu.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAgregarMesa.aspx.cs">
-      <DependentUpon>frmAgregarMesa.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmAgregarMesa.aspx.designer.cs">
-      <DependentUpon>frmAgregarMesa.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MesaAbierta.aspx.cs">
       <DependentUpon>MesaAbierta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -11,13 +11,15 @@ namespace TPC_AppRestaurante_Equipo17
 {
     public partial class Mesas : System.Web.UI.Page
     {
+        public MesaNegocio negocioMesa = new MesaNegocio();
+        public SalaNegocio negocioSala = new SalaNegocio();
+
+        public int idSala=1;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             try
             {
-                MesaNegocio negocioMesa = new MesaNegocio();
-                SalaNegocio negocioSala = new SalaNegocio();
 
                 if (Session["listaMesas"] == null)
                 {
@@ -27,7 +29,6 @@ namespace TPC_AppRestaurante_Equipo17
 
                 if (!IsPostBack)
                 {
-                    List<Mesa> listaMesas = negocioMesa.listar();
 
                     
                     //Cargar Salones
@@ -37,13 +38,13 @@ namespace TPC_AppRestaurante_Equipo17
                     ddlSalones.DataBind();
 
                     
-                    int idSala=int.Parse(ddlSalones.Items[0].Value);
+                    idSala=int.Parse(ddlSalones.Items[0].Value);
                     //Mostrar Mesas
                     repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
                     repMesas.DataBind();
 
-                }
 
+                }
 
 
             }catch(Exception ex)
@@ -55,15 +56,15 @@ namespace TPC_AppRestaurante_Equipo17
 
         protected void ddlSalones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idSala = int.Parse(ddlSalones.SelectedItem.Value);
+            idSala = int.Parse(ddlSalones.SelectedItem.Value);
 
-            //Mostrar Mesas
+            //Mostrar Mesas por salas
             repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x=> x.Sala.Id == idSala);
             repMesas.DataBind();
         }
 
 
-        public string ObtenerIframeSrc(object estado, object id) /* mostrar iframe depende del estado de la mesa*/
+        public string ObtenerIframeMesasSrc(object estado, object id) /* mostrar iframe depende del estado de la mesa*/
         {
             if (estado != null && estado.ToString() == "1")
             {
@@ -81,17 +82,50 @@ namespace TPC_AppRestaurante_Equipo17
             {
                 return "btn btn-success"; /* Botón verde para estado 1 - mesa libre*/
             }
-            else if(estado != null && estado.ToString() == "2")
+            else if (estado != null && estado.ToString() == "2")
             {
                 return "btn btn-danger"; /* Botón rojo para estado 2 - mesa ocupada*/
             }
             else
             {
-                return "btn btn-danger"; /* Botón azul para estado 3 - en proceso de pago*/
+                return "btn btn-primary"; /* Botón azul para estado 3 - en proceso de pago*/
             }
+
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e) /*btn para Agregar mesa*/
+        {
+            if (ddlSalones.SelectedItem.Value != null)
+            {
+                List<Sala> temporalSalas = negocioSala.listar();
+                List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
+                idSala = int.Parse(ddlSalones.SelectedItem.Value);
 
+                Mesa mesa = new Mesa();
+                Sala sala = temporalSalas.Find(x => x.Id == idSala);
+
+                //Agregar mesa a DB
+
+                mesa.NumeroMesa = (sala.CantidadMesas) + 1;
+                mesa.Sala = sala;
+                negocioMesa.agregar(mesa);
+
+                //Agregar mesa a session
+                mesa.Estado = 1;
+                temporalMesas.Add(mesa);
+
+                Session["listaMesas"] = temporalMesas;
+
+
+                //Modificar Sala.CantidadMesas en DB
+                sala.CantidadMesas += 1;
+                negocioSala.modificar(sala);
+
+                //Cargar Mesas
+                repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
+                repMesas.DataBind();
+            }
+        }
     }
 
 }

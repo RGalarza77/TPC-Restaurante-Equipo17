@@ -66,13 +66,13 @@ namespace TPC_AppRestaurante_Equipo17
             Mesa mesa= new Mesa();
             mesa.Cliente = new Cliente();
 
-            if (Request.QueryString["id"].ToString() != null) 
+            if (Request.QueryString["Id"].ToString() != null) 
             {
-                int idMesa = int.Parse(Request.QueryString["id"].ToString());
+                int IdMesa = int.Parse(Request.QueryString["Id"].ToString());
                 List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
 
                 /*busco la mesa para carga las propiedades en session*/
-                mesa = temporalMesas.Find(x => x.Id == idMesa);
+                mesa = temporalMesas.Find(x => x.Id == IdMesa);
   
                 //Cantidad Personas
                 mesa.CantidadPersonas = int.Parse(txtCantidadPersonas.Text);
@@ -100,9 +100,9 @@ namespace TPC_AppRestaurante_Equipo17
 
 
                 /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
-                string idMesaAbierta = Request.QueryString["Id"].ToString();
+                string IdMesaAbierta = Request.QueryString["Id"].ToString();
 
-                Response.Redirect("MesaAbierta.aspx?Id=" + idMesaAbierta);
+                Response.Redirect("MesaAbierta.aspx?Id=" + IdMesaAbierta);
             }
 
         }

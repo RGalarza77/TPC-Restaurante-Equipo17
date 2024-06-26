@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT M.Id, M.Numero,M.IdSala, S.Nombre AS NombreSala FROM Mesas M LEFT JOIN Salas S ON M.IdSala = S.Id;"); 
+                datos.setearConsulta("SELECT M.Id, M.Numero, M.IdSala, S.Nombre AS NombreSala FROM Mesas M LEFT JOIN Salas S ON M.IdSala = S.Id;"); 
                 /*modificar consulta*/
                 datos.ejecutarLectura();
 
@@ -40,6 +40,27 @@ namespace Negocio
                 throw ex;
             }
 
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void agregar(Mesa mesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Mesas values (@Numero, @IdSala)");
+                datos.setearParametro("@Numero", mesa.NumeroMesa);
+                datos.setearParametro("@IdSala", mesa.Sala.Id);
+                datos.ejecutarAccion();
+
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
             finally
             {
                 datos.cerrarConexion();
