@@ -11,34 +11,32 @@ namespace TPC_AppRestaurante_Equipo17
 {
     public partial class MesaCerrada : System.Web.UI.Page
     {
+        public ClienteNegocio clienteNegocio = new ClienteNegocio();
+        public EmpleadoNegocio empleadoNegocio = new EmpleadoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Mesa mesa;
 
             try
             {
                 if (!IsPostBack) /*si es la primera vez que carga la pantalla*/
                 {
-                    MesaNegocio mesaNegocio = new MesaNegocio();
-                    ClienteNegocio clienteNegocio = new ClienteNegocio();
-
-                    if (Request.QueryString["id"].ToString() != null)
-                    {
-                        int idMesa = int.Parse(Request.QueryString["id"].ToString());
-                        List<Mesa> temporal = (List<Mesa>)Session["listaMesas"];
-                        mesa = temporal.Find(x => x.Id == idMesa);
-
-                    }
-
                     //cliente
                     ddlClientes.Enabled = false;
 
                     ddlClientes.DataSource = clienteNegocio.listar();
 
 
-                    ddlClientes.DataTextField = "Numero";    /*reemplazar por un menu de busqueda de clientes*/
-                    ddlClientes.DataValueField = "Documento";
+                    ddlClientes.DataTextField = "Nombre";    /*reemplazar por un menu de busqueda de clientes*/
+                    ddlClientes.DataValueField = "Numero";
                     ddlClientes.DataBind();
+
+                    //Mozo
+                    ddlMozo.DataSource = empleadoNegocio.listarMozos();
+
+                    ddlMozo.DataTextField = "Nombre";
+                    ddlMozo.DataValueField = "Legajo";
+                    ddlMozo.DataBind();
+
                 }
 
             }
@@ -65,13 +63,48 @@ namespace TPC_AppRestaurante_Equipo17
 
         protected void btnAbrirMesa_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"].ToString() != null)
-            {
-                string idMesa = Request.QueryString["id"].ToString();
-                
-                Response.Redirect("MesaAbierta.aspx?Id="+ idMesa);
+            Mesa mesa= new Mesa();
+            mesa.Cliente = new Cliente();
 
+            if (Request.QueryString["Id"].ToString() != null) 
+            {
+                int IdMesa = int.Parse(Request.QueryString["Id"].ToString());
+                List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
+
+                /*busco la mesa para carga las propiedades en session*/
+                mesa = temporalMesas.Find(x => x.Id == IdMesa);
+  
+                //Cantidad Personas
+                mesa.CantidadPersonas = int.Parse(txtCantidadPersonas.Text);
+                
+                //Cliente
+                List<Cliente> temporalClientes = clienteNegocio.listar();
+                int numeroCliente = int.Parse(ddlClientes.SelectedValue);
+                mesa.Cliente = temporalClientes.Find(x => x.Numero == numeroCliente);
+
+                if (ddlClientes.Enabled)
+                {
+
+                    mesa.Cliente.Numero = int.Parse(ddlClientes.SelectedValue);
+                }
+                else
+                {
+                    mesa.Cliente.Numero = 1; //Cliente Anonimo
+                }
+
+                //Mozo
+                mesa.MozoAsignado = int.Parse(ddlMozo.SelectedValue);
+
+                //Estado
+                mesa.Estado = 2; /* 2- mesa ocupada*/
+
+
+                /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
+                string IdMesaAbierta = Request.QueryString["Id"].ToString();
+
+                Response.Redirect("MesaAbierta.aspx?Id=" + IdMesaAbierta);
             }
+
         }
 
         protected void chkClienteRegistrado_CheckedChanged(object sender, EventArgs e)

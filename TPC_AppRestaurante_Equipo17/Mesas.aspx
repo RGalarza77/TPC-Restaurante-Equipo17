@@ -2,74 +2,66 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>
 
 
 
     <div class="row">
 
-            <%--Agregar Mesa--%>
-            <div>
+        <%--SALON--%>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
 
-                <button id="btnAgregarMesa" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar Mesa
-                </button>
+                <asp:DropDownList runat="server" ID="ddlSalones" CssClass="form-select form-select-lg mb-3" aria-label="Large select example" AutoPostBack="true" OnSelectedIndexChanged="ddlSalones_SelectedIndexChanged"></asp:DropDownList>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Nueva Mesa</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <iframe src="frmAgregarMesa.aspx" style="width: 100%; height: 100%; border: none;"></iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                            </div>
-                        </div>
-                    </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>  
+            
+                <%--Agregar Mesa--%>
+                <div>
+                  <asp:Button runat="server" ID="btnAgregar" type="button" class="btn btn-success" Text="Agregar" OnClick="btnAgregar_Click"></asp:Button>
+
+                </div>
+                
+                <%--titulo--%>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <p class="fs-1">MESAS DISPONIBLES</p>
                 </div>
 
-            </div>
-            
-            <%--SALON--%>
-            <asp:DropDownList runat="server" ID="ddlSalones" CssClass="form-select form-select-lg mb-3" aria-label="Large select example"></asp:DropDownList>
+                <%--MESAS--%>
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+
+                        <asp:Repeater ID="repMesas" runat="server">
+
+                            <ItemTemplate>
+                                <div class="col-4">
+                                    <div class="container">
+
+                                        <asp:LinkButton ID="lbtMesa" runat="server" CssClass='<%# ObtenerButtonClass(Eval("Estado")) %>' Text='<%# "Mesa " + Eval("NumeroMesa") %>' data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>'
+                                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>'/>
 
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <p class="fs-1">MESAS DISPONIBLES</p>
-            </div>
+                                        <div class="offcanvas offcanvas-end" tabindex="-1" id='<%# "offcanvasExample" + Container.ItemIndex %>' aria-labelledby='<%# "offcanvasExampleLabel" + Container.ItemIndex %>'>
 
-            <asp:Repeater ID="repMesas" runat="server" >
+                                            <div class="offcanvas-header">
+                                                <label><%#"Mesa "+ Eval("NumeroMesa") %></label>
+                                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                                <iframe src='<%# ObtenerIframeMesasSrc(Eval("Estado"), Eval("Id")) %>' style="width: 100%; height: 100%; border: none;"></iframe>
+                                            </div>
+                                        </div>
 
-                <ItemTemplate>
-                    <div class="col-4">
-                    <div class="container">
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
 
-                        <asp:LinkButton ID="Button1" runat="server" CssClass="btn btn-primary" Text='<%# "Mesa " + Eval("NumeroMesa") %>'  data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>' 
-                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>'/>
-                        
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id='<%# "offcanvasExample" + Container.ItemIndex %>' aria-labelledby='<%# "offcanvasExampleLabel" + Container.ItemIndex %>'>
-                            
-                            <div class="offcanvas-header">
-                                <label><%#"Mesa "+ Eval("NumeroMesa") %></label>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <iframe src='<%# "MesaCerrada.aspx?Id=" + Eval("Id") %>' style="width:100%; height:100%; border:none; "></iframe>
-                            </div>
-                        </div>
-
-                    </div>
-                    </div>
-               </ItemTemplate>
-            </asp:Repeater>
-
-       </div>
+    </div>
 
 
 </asp:Content>

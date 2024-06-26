@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT M.Id, M.Numero,M.IdSala, S.Nombre AS NombreSala FROM Mesas M LEFT JOIN Salas S ON M.IdSala = S.Id;"); 
+                datos.setearConsulta("SELECT M.Id, M.Numero, M.IdSala, S.Nombre AS NombreSala FROM Mesas M LEFT JOIN Salas S ON M.IdSala = S.Id;"); 
                 /*modificar consulta*/
                 datos.ejecutarLectura();
 
@@ -28,6 +28,7 @@ namespace Negocio
                     aux.Sala = new Sala();
                     aux.Sala.Id = (int)datos.Lector["IdSala"];
                     aux.Sala.Nombre = (string)datos.Lector["NombreSala"];
+                    aux.Estado = 1; /*mesa libre*/
 
                     lista.Add(aux);
                 }
@@ -39,6 +40,27 @@ namespace Negocio
                 throw ex;
             }
 
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void agregar(Mesa mesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Mesas values (@Numero, @IdSala)");
+                datos.setearParametro("@Numero", mesa.NumeroMesa);
+                datos.setearParametro("@IdSala", mesa.Sala.Id);
+                datos.ejecutarAccion();
+
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
             finally
             {
                 datos.cerrarConexion();

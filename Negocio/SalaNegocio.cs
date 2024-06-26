@@ -42,5 +42,50 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void agregar(Sala sala)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Salas (Nombre, Mesas) VALUES (@Nombre, @CantidadMesas)");
+                datos.setearParametro("@Nombre", sala.Nombre);
+                datos.setearParametro("@CantidadMesas", sala.CantidadMesas);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Sala sala)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Salas SET Nombre=@Nombre, Mesas=@CantidadMesas WHERE Id=@Id");
+                datos.setearParametro("@Nombre", sala.Nombre);
+                datos.setearParametro("@CantidadMesas", sala.CantidadMesas);
+                datos.setearParametro("@Id", sala.Id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
