@@ -38,11 +38,10 @@ namespace TPC_AppRestaurante_Equipo17
                     ddlSalones.DataBind();
 
                     
-                    idSala=int.Parse(ddlSalones.Items[0].Value);
                     //Mostrar Mesas
-                    repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
-                    repMesas.DataBind();
+                    idSala=int.Parse(ddlSalones.Items[0].Value);
 
+                    cargarRepeaterMesas(idSala);
 
                 }
 
@@ -59,8 +58,7 @@ namespace TPC_AppRestaurante_Equipo17
             idSala = int.Parse(ddlSalones.SelectedItem.Value);
 
             //Mostrar Mesas por salas
-            repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x=> x.Sala.Id == idSala);
-            repMesas.DataBind();
+            cargarRepeaterMesas(idSala);
         }
 
 
@@ -122,9 +120,45 @@ namespace TPC_AppRestaurante_Equipo17
                 negocioSala.modificar(sala);
 
                 //Cargar Mesas
-                repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
-                repMesas.DataBind();
+
+                cargarRepeaterMesas(idSala);
             }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (ddlSalones.SelectedItem.Value != null)
+            {
+                List<Sala> temporalSalas = negocioSala.listar();
+                List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
+                idSala = int.Parse(ddlSalones.SelectedItem.Value);
+
+                Sala sala = temporalSalas.Find(x => x.Id == idSala);
+
+                //Quitar mesa a DB
+                Mesa mesa = temporalMesas.FindLast(x => x.Sala.Id == idSala); /*ultima mesa de la sala*/
+
+                negocioMesa.eliminar(mesa);
+
+                //Quitar mesa a session
+                temporalMesas.Remove(mesa);
+
+                Session["listaMesas"] = temporalMesas;
+
+
+                //Modificar Sala.CantidadMesas en DB
+                sala.CantidadMesas -= 1;
+                negocioSala.modificar(sala);
+
+                //Cargar Mesas
+                cargarRepeaterMesas(idSala);
+            }
+        }
+
+        protected void cargarRepeaterMesas(int idSala)
+        {
+            repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
+            repMesas.DataBind();
         }
     }
 

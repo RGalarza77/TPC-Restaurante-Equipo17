@@ -17,11 +17,21 @@
             </ContentTemplate>
         </asp:UpdatePanel>  
             
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+
                 <%--Agregar Mesa--%>
                 <div>
                   <asp:Button runat="server" ID="btnAgregar" type="button" class="btn btn-success" Text="Agregar" OnClick="btnAgregar_Click"></asp:Button>
-
                 </div>
+
+                <%--Eliminar Mesa--%>
+                <div>
+                    <asp:Button runat="server" ID="btnEliminar" type="button" class="btn btn-success" Text="Eliminar" OnClick="btnEliminar_Click"></asp:Button>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
                 
                 <%--titulo--%>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -62,6 +72,5 @@
                 </asp:UpdatePanel>
 
     </div>
-
 
 </asp:Content>

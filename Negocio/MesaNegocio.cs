@@ -66,5 +66,24 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void eliminar(Mesa mesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Delete From Mesas Where Id = @Id;");
+                datos.setearParametro("@Id", mesa.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
