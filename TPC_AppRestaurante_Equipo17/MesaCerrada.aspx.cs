@@ -89,7 +89,7 @@ namespace TPC_AppRestaurante_Equipo17
                 }
                 else
                 {
-                    mesa.Cliente.Numero = 1; //Cliente Anonimo
+                    mesa.Cliente.Numero = 0; //Cliente Anonimo
                 }
 
                 //Mozo

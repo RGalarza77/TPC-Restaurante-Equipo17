@@ -127,32 +127,37 @@ namespace TPC_AppRestaurante_Equipo17
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (ddlSalones.SelectedItem.Value != null)
-            {
-                List<Sala> temporalSalas = negocioSala.listar();
-                List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
-                idSala = int.Parse(ddlSalones.SelectedItem.Value);
+                if (ddlSalones.SelectedItem.Value != null)
+                {
+                    List<Sala> temporalSalas = negocioSala.listar();
+                    List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
+                    idSala = int.Parse(ddlSalones.SelectedItem.Value);
 
-                Sala sala = temporalSalas.Find(x => x.Id == idSala);
+                    Sala sala = temporalSalas.Find(x => x.Id == idSala);
 
-                //Quitar mesa a DB
-                Mesa mesa = temporalMesas.FindLast(x => x.Sala.Id == idSala); /*ultima mesa de la sala*/
+                    //Quitar mesa a DB
+                    Mesa mesa = temporalMesas.FindLast(x => x.Sala.Id == idSala); /*ultima mesa de la sala*/
 
-                negocioMesa.eliminar(mesa);
+                    if(mesa.Id > 0)
+                    {
+                         negocioMesa.eliminar(mesa);
 
-                //Quitar mesa a session
-                temporalMesas.Remove(mesa);
+                        //Quitar mesa a session
+                        temporalMesas.Remove(mesa);
 
-                Session["listaMesas"] = temporalMesas;
+                        Session["listaMesas"] = temporalMesas;
 
 
-                //Modificar Sala.CantidadMesas en DB
-                sala.CantidadMesas -= 1;
-                negocioSala.modificar(sala);
+                        //Modificar Sala.CantidadMesas en DB
+                        sala.CantidadMesas -= 1;
+                        negocioSala.modificar(sala);
 
-                //Cargar Mesas
-                cargarRepeaterMesas(idSala);
-            }
+                        //Cargar Mesas
+                        cargarRepeaterMesas(idSala);
+
+                    }
+                }
+            
         }
 
         protected void cargarRepeaterMesas(int idSala)
