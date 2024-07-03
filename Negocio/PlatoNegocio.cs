@@ -16,14 +16,16 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select  Nombre, Descripcion, Precio  from Platos");
+                datos.setearConsulta("select  Id, Codigo, Nombre, Descripcion, Precio  from Platos");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Plato plato = new Plato();
-                    
+
+                    plato.Id = int.Parse(datos.Lector["Id"].ToString());
                     plato.Nombre = (string)datos.Lector["Nombre"];
+                    plato.Codigo = (string)datos.Lector["Codigo"];
                     plato.Descripcion = (string)datos.Lector["Descripcion"];
                     plato.Precio = float.Parse(datos.Lector["Precio"].ToString());
 

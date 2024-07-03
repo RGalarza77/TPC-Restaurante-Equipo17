@@ -12,14 +12,19 @@ namespace TPC_AppRestaurante_Equipo17
 {
     public partial class Platos : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            PlatoNegocio PlaNeg = new PlatoNegocio();
-            List<Plato> lista = new List<Plato>();
-            lista = PlaNeg.listar();
+            if (Session["listaPLatos"] == null)
+            {
+                PlatoNegocio PlaNeg = new PlatoNegocio();
+                Session.Add("listaPlatos", PlaNeg.listar());
+            }
+            
+          
             if (!IsPostBack)
             {
-                repPlatos.DataSource = lista;
+                repPlatos.DataSource = Session["listaPlatos"];
                 repPlatos.DataBind();
 
             }
@@ -41,6 +46,7 @@ namespace TPC_AppRestaurante_Equipo17
                 plato.Precio = float.Parse(txtPrecio.Text.ToString());
 
                 plato.Id = negocio.agregar(plato);
+                ((List<Plato>)Session["listaPlatos"]).Add(plato);
             }
             catch (Exception ex)
             {
@@ -54,7 +60,8 @@ namespace TPC_AppRestaurante_Equipo17
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            string valor = ((Button)sender).CommandArgument;
+            Response.Redirect("ModificarPLato.aspx?Id=" + valor);
         }
     }
 }

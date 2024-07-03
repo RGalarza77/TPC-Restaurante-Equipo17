@@ -30,7 +30,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <asp:Button Text="Imagenes" CssClass="btn btn-secundary" runat="server" />
-                                <asp:LinkButton Text="Modificar" ID="btnModificar" CssClass="btn btn-secundary" data-bs-toggle="offcanvas" data-bs-target="#Agregar" runat="server" onclick="btnModificar_Click" />
+                                <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-secundary" runat="server" onclick="btnModificar_Click" CommandArgument='<%#Eval("Id")%>' CommandName="PlatoId"/>
                                 <asp:Button Text="Eliminar" CssClass="btn btn-secundary" runat="server" />
 
 

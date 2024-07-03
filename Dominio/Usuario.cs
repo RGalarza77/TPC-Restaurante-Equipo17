@@ -23,5 +23,7 @@ namespace Dominio
         public TipoUsuario Tipo { get; set; }
 
         //domicilio - fechanacimiento
+
+        //tipo usuario pasarlo a int y armar tabla 
     }
 }

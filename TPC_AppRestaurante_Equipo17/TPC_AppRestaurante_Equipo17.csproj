@@ -72,6 +72,7 @@
     <Content Include="Carrito.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Mesas.aspx" />
+    <Content Include="ModificarPlato.aspx" />
     <Content Include="Pedido.aspx" />
     <Content Include="Platos.aspx" />
     <Content Include="Principal.aspx" />
@@ -116,6 +117,13 @@
     </Compile>
     <Compile Include="Mesas.aspx.designer.cs">
       <DependentUpon>Mesas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarPlato.aspx.cs">
+      <DependentUpon>ModificarPlato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarPlato.aspx.designer.cs">
+      <DependentUpon>ModificarPlato.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido.aspx.cs">
       <DependentUpon>Pedido.aspx</DependentUpon>
