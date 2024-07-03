@@ -109,10 +109,7 @@ namespace TPC_AppRestaurante_Equipo17
                 negocioMesa.agregar(mesa);
 
                 //Agregar mesa a session
-                mesa.Estado = 1;
-                temporalMesas.Add(mesa);
-
-                Session["listaMesas"] = temporalMesas;
+                Session["listaMesas"] = negocioMesa.listar();
 
 
                 //Modificar Sala.CantidadMesas en DB
