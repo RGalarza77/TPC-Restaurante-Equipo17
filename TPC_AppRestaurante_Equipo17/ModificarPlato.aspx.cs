@@ -13,7 +13,7 @@ namespace TPC_AppRestaurante_Equipo17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["Id"] != null)
+            if (Request.QueryString["Id"] != null && !IsPostBack)
             {
                 int id = int.Parse(Request.QueryString["Id"].ToString());
                 List<Plato> temp = (List<Plato>)Session["listaPlatos"];
@@ -24,7 +24,27 @@ namespace TPC_AppRestaurante_Equipo17
                 txtCodigo.Text = modificado.Codigo;
                 txtNombre.Text = modificado.Nombre;
                 txtDescripcion.Text = modificado.Descripcion;
+                txtPrecio.Text = modificado.Precio.ToString();
             }
+
+
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            Plato nuevo = new Plato();
+            PlatoNegocio negocio = new PlatoNegocio();
+
+            nuevo.Id = int.Parse(txtID.Text);
+            nuevo.Codigo = txtCodigo.Text;
+            nuevo.Nombre = txtNombre.Text;
+            nuevo.Descripcion = txtDescripcion.Text;
+            nuevo.Precio = float.Parse(txtPrecio.Text);
+
+            negocio.modificar(nuevo);
+
+            Response.Redirect("platos.aspx");
+
         }
     }
 }

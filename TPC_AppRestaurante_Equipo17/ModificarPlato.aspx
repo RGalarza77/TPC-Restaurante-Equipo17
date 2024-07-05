@@ -22,7 +22,11 @@
                 <asp:TextBox ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server" />
             </div>
             <div class="mb-3">
-                <asp:Button Text="Modificar" Id="btnModificar"  runat="server" />
+                <label for="txtPrecio" class="form-label">Precio</label>
+                <asp:TextBox ID="txtPrecio" TextMode="Number" CssClass="form-control" runat="server" />
+            </div>
+            <div class="mb-3">
+                <asp:Button Text="Modificar" ID="btnModificar" onclick="btnModificar_Click" runat="server" />
             </div>
 
 

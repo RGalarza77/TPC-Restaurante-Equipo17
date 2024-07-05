@@ -71,6 +71,31 @@ namespace Negocio
 
         }
 
+        public void modificar(Plato modificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update PLatos set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio Where Id = @id");
+                datos.setearParametro("@codigo", modificado.Codigo);
+                datos.setearParametro("@nombre", modificado.Nombre);
+                datos.setearParametro("@descripcion", modificado.Descripcion);
+                datos.setearParametro("@precio", modificado.Precio);
+                datos.setearParametro("@id", modificado.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
 
     }
 }
