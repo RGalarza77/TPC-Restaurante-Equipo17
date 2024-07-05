@@ -29,8 +29,7 @@ CREATE TABLE platos (
 
 INSERT INTO Ingredientes VALUES ('tomate','2024-01-10',10,50),('lechuga','2024-10-11',12,15), ('milanesa','2024-01-10',1000,5)
 
-INSERT INTO Platos VALUES ('Fideos al tuco','Plato principal',5000,'50% de descuento',1),('Flan de vainilla','Postre',500,'10% de descuento',1), ('Manaos','Bebida',1000,null,1)
-
+INSERT INTO Platos VALUES ('ft','Fideos al tuco','fideos con salsa a eleccion', 1200)
 GO
 CREATE TABLE Clientes(
     Documento INT NOT NULL PRIMARY KEY,
