@@ -19,7 +19,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select  Nombre, Descripcion, Precio,  from PRODUCTOS");
+                datos.setearConsulta("select  Nombre, Descripcion, Precio, Categoria  from platos");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,8 +27,9 @@ namespace Negocio
                     Insumo ins = new Insumo();
 
                     ins.Nombre = (string)datos.Lector["Nombre"];
-                    ins.Categoria = (string)datos.Lector["Descripcion"];
-                    ins.Precio = (float)datos.Lector["Precio"];
+                    ins.Descripcion = (string)datos.Lector["Descripcion"];
+                    ins.Precio = (decimal)datos.Lector["Precio"];
+                    ins.Categoria = (int)datos.Lector["Categoria"];
 
                     lista.Add(ins);
                 }

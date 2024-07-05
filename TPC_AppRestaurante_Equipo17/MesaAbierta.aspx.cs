@@ -15,11 +15,12 @@ namespace TPC_AppRestaurante_Equipo17
         {
             try
             {
+
                 if (Request.QueryString["Id"] != null)
                 {
                     /*obtengo las propiedades desde las mesas en session*/
-                    int idMesa =int.Parse(Request.QueryString["Id"].ToString());
-                    List<Mesa> temporal= (List<Mesa>)Session["listaMesas"];
+                    int idMesa = int.Parse(Request.QueryString["Id"].ToString());
+                    List<Mesa> temporal = (List<Mesa>)Session["listaMesas"];
                     Mesa mesa = temporal.Find(x => x.Id == idMesa);
 
                     /*Cargo lo obtenido*/
@@ -44,7 +45,13 @@ namespace TPC_AppRestaurante_Equipo17
 
             mesa.Estado = 1; /* 1- mesa libre*/
 
-            Response.Redirect("MesaCerrada.aspx?Id="+ idMesa);
+
+            Response.Redirect("MesaCerrada.aspx?Id=" + idMesa);
+        }
+
+        protected void btnAbrirMenu_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VentanaAgregarInsumos.aspx");
         }
     }
 }

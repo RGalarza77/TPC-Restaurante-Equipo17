@@ -17,7 +17,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("SELECT M.Id, M.Numero, M.IdSala, S.Nombre AS NombreSala FROM Mesas M LEFT JOIN Salas S ON M.IdSala = S.Id;"); 
-                /*modificar consulta*/
+
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

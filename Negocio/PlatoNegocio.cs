@@ -27,7 +27,7 @@ namespace Negocio
                     plato.Nombre = (string)datos.Lector["Nombre"];
                     plato.Codigo = (string)datos.Lector["Codigo"];
                     plato.Descripcion = (string)datos.Lector["Descripcion"];
-                    plato.Precio = float.Parse(datos.Lector["Precio"].ToString());
+                    plato.Precio = decimal.Parse(datos.Lector["Precio"].ToString());
 
                     lista.Add(plato);
                 }

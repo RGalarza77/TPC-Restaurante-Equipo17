@@ -98,9 +98,9 @@ namespace TPC_AppRestaurante_Equipo17
                 //Estado
                 mesa.Estado = 2; /* 2- mesa ocupada*/
 
-
                 /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
                 string IdMesaAbierta = Request.QueryString["Id"].ToString();
+
 
                 Response.Redirect("MesaAbierta.aspx?Id=" + IdMesaAbierta);
             }

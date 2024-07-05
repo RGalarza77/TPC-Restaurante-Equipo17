@@ -60,15 +60,6 @@ namespace TPC_AppRestaurante_Equipo17
         protected global::System.Web.UI.WebControls.TextBox tbxComentario;
 
         /// <summary>
-        /// Control btnAbrirMenu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAbrirMenu;
-
-        /// <summary>
         /// Control btnCerrarMesa.
         /// </summary>
         /// <remarks>

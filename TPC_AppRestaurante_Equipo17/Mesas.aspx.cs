@@ -21,6 +21,7 @@ namespace TPC_AppRestaurante_Equipo17
             try
             {
 
+
                 if (Session["listaMesas"] == null)
                 {
 
@@ -132,12 +133,13 @@ namespace TPC_AppRestaurante_Equipo17
 
                     Sala sala = temporalSalas.Find(x => x.Id == idSala);
 
-                    //Quitar mesa a DB
+                    
                     Mesa mesa = temporalMesas.FindLast(x => x.Sala.Id == idSala); /*ultima mesa de la sala*/
 
                     if(mesa.Id > 0)
                     {
-                         negocioMesa.eliminar(mesa);
+                        //Quitar mesa a DB
+                        negocioMesa.eliminar(mesa);
 
                         //Quitar mesa a session
                         temporalMesas.Remove(mesa);
@@ -157,7 +159,7 @@ namespace TPC_AppRestaurante_Equipo17
             
         }
 
-        protected void cargarRepeaterMesas(int idSala)
+        public void cargarRepeaterMesas(int idSala)
         {
             repMesas.DataSource = ((List<Mesa>)Session["listaMesas"]).FindAll(x => x.Sala.Id == idSala);
             repMesas.DataBind();

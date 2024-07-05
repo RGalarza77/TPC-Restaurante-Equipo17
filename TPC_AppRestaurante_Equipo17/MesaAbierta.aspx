@@ -63,11 +63,39 @@
                     <asp:TextBox runat="server" ID="tbxComentario" Enabled="false">Comentario....</asp:TextBox>     
                 </div>
 
-                <asp:Button id="btnAbrirMenu" runat="server" CssClass="btn btn-warning" text="Abrir Menu"></asp:Button>
-
-
+                <%--Pedido--%>
                 <div>
+
+                    <br />
                     <label>PEDIDO  </label>
+
+                    <%--ventana agregar insumos--%>
+                    <div class="container mt-4">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Agregar Platos
+                        </button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Lista Menu</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                    </div>
+                                    <div class="modal-body" >
+                                        <iframe src="VentanaAgregarInsumos.aspx" style="width: 100%; height: 100%; border: none;"> </iframe> 
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <br />
                     <ol class="list-group list-group-numbered">
                         <li class="list-group-item">A list item</li>

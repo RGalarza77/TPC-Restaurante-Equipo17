@@ -39,9 +39,14 @@ namespace TPC_AppRestaurante_Equipo17
             nuevo.Codigo = txtCodigo.Text;
             nuevo.Nombre = txtNombre.Text;
             nuevo.Descripcion = txtDescripcion.Text;
-            nuevo.Precio = float.Parse(txtPrecio.Text);
+            nuevo.Precio = decimal.Parse(txtPrecio.Text);
 
+            //modificar en db
             negocio.modificar(nuevo);
+
+            //modificar en session
+            Session["listaPlatos"] = negocio.listar();
+            
 
             Response.Redirect("platos.aspx");
 

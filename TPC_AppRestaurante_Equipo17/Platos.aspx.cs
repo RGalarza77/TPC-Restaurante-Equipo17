@@ -43,7 +43,7 @@ namespace TPC_AppRestaurante_Equipo17
                 plato.Codigo = txtCod.Text;
                 plato.Nombre = txtNombre.Text;
                 plato.Descripcion = txtDescripcion.Text;
-                plato.Precio = float.Parse(txtPrecio.Text.ToString());
+                plato.Precio = decimal.Parse(txtPrecio.Text.ToString());
 
                 plato.Id = negocio.agregar(plato);
                 ((List<Plato>)Session["listaPlatos"]).Add(plato);

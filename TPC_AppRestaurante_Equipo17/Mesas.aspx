@@ -39,7 +39,7 @@
                 </div>
 
                 <%--MESAS--%>
-                <asp:UpdatePanel runat="server">
+                <asp:updatepanel runat="server">
                     <ContentTemplate>
 
                         <asp:Repeater ID="repMesas" runat="server">
@@ -49,7 +49,7 @@
                                     <div class="container">
 
                                         <asp:LinkButton ID="lbtMesa" runat="server" CssClass='<%# ObtenerButtonClass(Eval("Estado")) %>' Text='<%# "Mesa " + Eval("NumeroMesa") %>' data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>'
-                                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>'/>
+                                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>' />
 
 
                                         <div class="offcanvas offcanvas-end" tabindex="-1" id='<%# "offcanvasExample" + Container.ItemIndex %>' aria-labelledby='<%# "offcanvasExampleLabel" + Container.ItemIndex %>'>
@@ -59,8 +59,10 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                             </div>
                                             <div class="offcanvas-body">
+                                                
                                                 <iframe src='<%# ObtenerIframeMesasSrc(Eval("Estado"), Eval("Id")) %>' style="width: 100%; height: 100%; border: none;"></iframe>
                                             </div>
+
                                         </div>
 
                                     </div>
@@ -70,7 +72,6 @@
 
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
     </div>
 
 </asp:Content>
