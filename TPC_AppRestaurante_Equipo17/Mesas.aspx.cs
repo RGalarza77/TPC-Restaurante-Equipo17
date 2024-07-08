@@ -17,11 +17,8 @@ namespace TPC_AppRestaurante_Equipo17
         public int idSala=1;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             try
             {
-
-
                 if (Session["listaMesas"] == null)
                 {
 
@@ -29,9 +26,7 @@ namespace TPC_AppRestaurante_Equipo17
                 }
 
                 if (!IsPostBack)
-                {
-
-                    
+                {             
                     //Cargar Salones
                     ddlSalones.DataSource = negocioSala.listar();
                     ddlSalones.DataTextField = "Nombre";
@@ -45,8 +40,6 @@ namespace TPC_AppRestaurante_Equipo17
                     cargarRepeaterMesas(idSala);
 
                 }
-
-
             }catch(Exception ex)
             {
                 Session.Add("error", ex.ToString());
@@ -156,7 +149,6 @@ namespace TPC_AppRestaurante_Equipo17
 
                     }
                 }
-            
         }
 
         public void cargarRepeaterMesas(int idSala)

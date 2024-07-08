@@ -24,11 +24,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container">
             <div class="row">
 
                 <div>
-
                     <button id="btnImprimirPreCuenta" class="btn btn-primary" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
                             <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"></path>
@@ -38,9 +38,8 @@
                         </svg>
                         Imprimir Pre-Cuenta
                     </button>
-   
+
                 </div>
-                
 
                 <div>
                     <label>Personas </label>
@@ -48,19 +47,19 @@
                 </div>
 
                 <div>
-                     <label>Cliente  </label>
-                     <asp:Label ID="lblCliente" runat="server" Width="44">NombreCliente <%#Eval("NombreUsuario") %></asp:Label>
+                    <label>Cliente  </label>
+                    <asp:Label ID="lblCliente" runat="server" Width="44">NombreCliente <%#Eval("NombreUsuario") %></asp:Label>
                 </div>
 
                 <div>
                     <label>Mozo  </label>
-                     <asp:Label ID="lblMozo" runat="server" Width="44">NombreMozo <%#Eval("NombreMozo") %></asp:Label>
+                    <asp:Label ID="lblMozo" runat="server" Width="44">NombreMozo <%#Eval("NombreMozo") %></asp:Label>
                 </div>
 
                 <div>
                     <label>Comentario  </label>
                     <br />
-                    <asp:TextBox runat="server" ID="tbxComentario" Enabled="false">Comentario....</asp:TextBox>     
+                    <asp:TextBox runat="server" ID="tbxComentario" Enabled="false">Comentario....</asp:TextBox>
                 </div>
 
                 <%--Pedido--%>
@@ -69,22 +68,71 @@
                     <br />
                     <label>PEDIDO  </label>
 
-                    <%--ventana agregar insumos--%>
+                    <%--ventana agregar pedido--%>
                     <div class="container mt-4">
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Agregar Platos
+                            Agregar Pedido
                         </button>
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border: solid;">
+                            <div class="modal-dialog modal-fullscreen">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Lista Menu</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                                     </div>
-                                    <div class="modal-body" >
-                                        <iframe src="VentanaAgregarInsumos.aspx" style="width: 100%; height: 100%; border: none;"> </iframe> 
+                                    <div class="modal-body">
+
+                                        <%--NavBar--%>
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active" id="nav-principal-tab" data-bs-toggle="tab" data-bs-target="#nav-principal" type="button" role="tab" aria-controls="nav-principal" aria-selected="true">Platos Principales</button>
+                                                <button class="nav-link" id="nav-postre-tab" data-bs-toggle="tab" data-bs-target="#nav-postre" type="button" role="tab" aria-controls="nav-postre" aria-selected="false">Postres</button>
+                                                <button class="nav-link" id="nav-bebida-tab" data-bs-toggle="tab" data-bs-target="#nav-bebida" type="button" role="tab" aria-controls="nav-bebida" aria-selected="false">Bebidas</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <%--Menu Platos pricipales--%>
+                                            <div class="tab-pane fade show active" id="nav-principal" role="tabpanel" aria-labelledby="nav-principal-tab" tabindex="0">
+                                                <asp:GridView runat="server" ID="dgvPrincipal" OnSelectedIndexChanged="dgvPrincipal_SelectedIndexChanged" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped">
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" ControlStyle-CssClass="form-check-label" />
+                                                        <asp:CheckBoxField HeaderText="Pedir" DataField="Agregado" ControlStyle-CssClass="form-check-input me-1" />
+                                                        <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Agregar" />
+
+                                                    </Columns>
+                                                </asp:GridView>
+
+                                            </div>
+
+                                            <%--Menu Postres--%>
+                                            <div class="tab-pane fade" id="nav-postre" role="tabpanel" aria-labelledby="nav-postre-tab" tabindex="0">
+                                                <asp:GridView runat="server" ID="dgvPostre" OnSelectedIndexChanged="dgvPostre_SelectedIndexChanged" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped">
+
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" ControlStyle-CssClass="form-check-label" />
+                                                        <asp:CheckBoxField HeaderText="Pedir" DataField="Agregado" ControlStyle-CssClass="form-check-input me-1" />
+                                                        <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Agregar" />
+                                                    </Columns>
+
+                                                </asp:GridView>
+
+                                            </div>
+
+                                            <%--Menu Bebidas--%>
+                                            <div class="tab-pane fade" id="nav-bebida" role="tabpanel" aria-labelledby="nav-bebida-tab" tabindex="0">
+                                                <asp:GridView runat="server" ID="dgvBebida" OnSelectedIndexChanged="dgvBebida_SelectedIndexChanged" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped">
+
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" ControlStyle-CssClass="form-check-label" />
+                                                        <asp:CheckBoxField HeaderText="Pedir" DataField="Agregado" ControlStyle-CssClass="form-check-input me-1" />
+                                                        <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Agregar" />
+
+                                                    </Columns>
+
+                                                </asp:GridView>
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div class="modal-footer">
@@ -95,21 +143,66 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <br />
-                    <ol class="list-group list-group-numbered">
-                        <li class="list-group-item">A list item</li>
-                        <li class="list-group-item">A list item</li>
-                        <li class="list-group-item">A list item</li>
-                    </ol>
-                </div>
-                <label>Subtotal: </label>
-                <label>Descuento: </label>
-                <label>Total: </label>
 
-                <asp:Button id="btnCerrarMesa" runat="server" CssClass="btn btn-danger" text="Cerrar Mesa" OnClick="btnCerrarMesa_Click"></asp:Button>
+                    <br />
+                    <%--Lista Pedido--%>
+
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <asp:Repeater runat="server" ID="repListaPedido">
+                                <HeaderTemplate>
+                                    <ul class="list-group list-group-numbered">
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <li class="list-group-item"><%# Eval("Nombre")%>
+                                    <div class="col-10">
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            <asp:Button ID="btnRestar" runat="server" CssClass="btn btn-success" Text=" - " OnClick="btnRestar_Click" CommandArgument='<%#Eval("Id") %>' />
+                                            <div style="display: block; text-align: justify; margin: auto;">
+                                                <asp:Label ID="lblCantidadPedido" runat="server" Width="50" BorderStyle="None" Text='<%# Eval("Cantidad") %>'></asp:Label>
+                                            </div>
+                                            <asp:Button ID="btnSumar" runat="server" CssClass="btn btn-success" Text=" + " OnClick="btnSumar_Click" CommandArgument='<%#Eval("Id") %>' />
+                                        </div>
+
+                                        <asp:Button runat="server" ID="btnEliminarInsumo" CssClass="btn btn-secondary" Text="Eliminar Pedido" OnClick="btnEliminarInsumo_Click" CommandArgument='<%# Eval("Id") %>'></asp:Button>
+                                    </div>
+                                    </li>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </ul>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <%--vaciar lista--%>
+                    <br />
+                    <asp:Button runat="server" ID="btnVaciarLista" Text="Vaciar Listado" OnClick="btnVaciarLista_Click" CssClass="btn btn-danger" Visible="false"></asp:Button>
+
+                </div>
+                <hr />
+
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <div>
+                            <asp:Label runat="server" ID="lblSubtotal"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label runat="server" ID="lblDescuento"> </asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label runat="server" ID="lblTotal" CssClass="h2"> </asp:Label>
+                        </div>
+                        <asp:Label runat="server" ID="lblListaSinPedidos" Visible="false">No posee insumos agregados en el listado de pedidos</asp:Label>
+
+                    </blockquote>
+                </figure>
+                <hr />
 
             </div>
+            <div class="text-center">
+                <asp:Button ID="btnCerrarMesa" runat="server" CssClass="btn btn-danger" Text="Cerrar Mesa" OnClick="btnCerrarMesa_Click" Width="80%"></asp:Button>
+            </div>
+
         </div>
     </form>
 </body>

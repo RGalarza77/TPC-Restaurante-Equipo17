@@ -14,7 +14,8 @@ namespace Dominio
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public bool Disponible { get; set; }
-        public int Categoria { get; set; }
+        public int Categoria { get; set; } /*1:plato pricipal, 2:bebidas, 3:postres*/
+        public int Cantidad { get; set; }
     }
 
 }

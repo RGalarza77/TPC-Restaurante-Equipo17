@@ -19,13 +19,13 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select  Nombre, Descripcion, Precio, Categoria  from platos");
+                datos.setearConsulta("select Id, Nombre, Descripcion, Precio, Categoria  from platos");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Insumo ins = new Insumo();
-
+                    ins.Id = (int)datos.Lector["Id"];
                     ins.Nombre = (string)datos.Lector["Nombre"];
                     ins.Descripcion = (string)datos.Lector["Descripcion"];
                     ins.Precio = (decimal)datos.Lector["Precio"];

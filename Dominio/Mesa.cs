@@ -15,6 +15,7 @@ namespace Dominio
         public Cliente Cliente { get; set; }
         public int MozoAsignado { get; set; }
         public string Comentario { get; set; }
+        //public List<Insumo> Insumos { get; set; }
         public int Estado { get; set; } /* puede ser: 1-mesa libre(verde), 2-mesa ocupada(rojo), 3-en proceso de pago(azul)*/
 
     }

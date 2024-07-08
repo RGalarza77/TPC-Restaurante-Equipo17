@@ -49,10 +49,10 @@
                                     <div class="container">
 
                                         <asp:LinkButton ID="lbtMesa" runat="server" CssClass='<%# ObtenerButtonClass(Eval("Estado")) %>' Text='<%# "Mesa " + Eval("NumeroMesa") %>' data-bs-toggle="offcanvas" data-bs-target='<%# "#offcanvasExample" + Container.ItemIndex %>'
-                                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>' />
+                                            aria-controls='<%# "offcanvasExample" + Container.ItemIndex %>'/>
 
 
-                                        <div class="offcanvas offcanvas-end" tabindex="-1" id='<%# "offcanvasExample" + Container.ItemIndex %>' aria-labelledby='<%# "offcanvasExampleLabel" + Container.ItemIndex %>'>
+                                        <div class="offcanvas offcanvas-end" tabindex="-1" id='<%# "offcanvasExample" + Container.ItemIndex %>' aria-labelledby='<%# "offcanvasExampleLabel" + Container.ItemIndex %>' style="width: 27%;">
 
                                             <div class="offcanvas-header">
                                                 <label><%#"Mesa "+ Eval("NumeroMesa") %></label>
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="offcanvas-body">
                                                 
-                                                <iframe src='<%# ObtenerIframeMesasSrc(Eval("Estado"), Eval("Id")) %>' style="width: 100%; height: 100%; border: none;"></iframe>
+                                                <iframe src='<%# ObtenerIframeMesasSrc(Eval("Estado"), Eval("Id")) %>' style="width: 100%; height: 100%;"></iframe>
                                             </div>
 
                                         </div>

@@ -37,6 +37,8 @@ namespace TPC_AppRestaurante_Equipo17
                     ddlMozo.DataValueField = "Legajo";
                     ddlMozo.DataBind();
 
+
+
                 }
 
             }
@@ -63,47 +65,56 @@ namespace TPC_AppRestaurante_Equipo17
 
         protected void btnAbrirMesa_Click(object sender, EventArgs e)
         {
-            Mesa mesa= new Mesa();
-            mesa.Cliente = new Cliente();
+            MesaNegocio mesaNegocio = new MesaNegocio();
 
-            if (Request.QueryString["Id"].ToString() != null) 
+            if (Request.QueryString["Id"] == null)
             {
-                int IdMesa = int.Parse(Request.QueryString["Id"].ToString());
-                List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
-
-                /*busco la mesa para carga las propiedades en session*/
-                mesa = temporalMesas.Find(x => x.Id == IdMesa);
-  
-                //Cantidad Personas
-                mesa.CantidadPersonas = int.Parse(txtCantidadPersonas.Text);
-                
-                //Cliente
-                List<Cliente> temporalClientes = clienteNegocio.listar();
-                int numeroCliente = int.Parse(ddlClientes.SelectedValue);
-                mesa.Cliente = temporalClientes.Find(x => x.Numero == numeroCliente);
-
-                if (ddlClientes.Enabled)
-                {
-
-                    mesa.Cliente.Numero = int.Parse(ddlClientes.SelectedValue);
-                }
-                else
-                {
-                    mesa.Cliente.Numero = 0; //Cliente Anonimo
-                }
-
-                //Mozo
-                mesa.MozoAsignado = int.Parse(ddlMozo.SelectedValue);
-
-                //Estado
-                mesa.Estado = 2; /* 2- mesa ocupada*/
-
-                /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
-                string IdMesaAbierta = Request.QueryString["Id"].ToString();
-
-
-                Response.Redirect("MesaAbierta.aspx?Id=" + IdMesaAbierta);
+                return;
             }
+            int IdMesa = int.Parse(Request.QueryString["Id"].ToString());
+            List<Mesa> temporalMesas = mesaNegocio.listar();
+
+            foreach (Mesa mesa in temporalMesas)
+            {
+                if (mesa.Id == IdMesa)
+                {
+                    //Cantidad Personas
+                    mesa.CantidadPersonas = int.Parse(txtCantidadPersonas.Text);
+
+                    //Cliente
+
+                    List<Cliente> temporalClientes = clienteNegocio.listar();
+
+                    if (ddlClientes.Enabled)
+                    {
+                        int numeroCliente = int.Parse(ddlClientes.SelectedValue);
+                        mesa.Cliente = temporalClientes.Find(x => x.Numero == numeroCliente);
+
+
+                    }
+                    else
+                    {
+                        mesa.Cliente = temporalClientes.Find(x => x.Numero == 0);
+
+                    }
+
+                    //Mozo
+                    mesa.MozoAsignado = int.Parse(ddlMozo.SelectedValue);
+
+                    //Estado
+                    mesa.Estado = 2;  /* 2- mesa ocupada*/
+
+                    break;
+                }
+
+            }
+
+            Session["listaMesas"] = temporalMesas;
+
+            /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
+
+            Response.Redirect("MesaAbierta.aspx?Id=" + IdMesa);
+
 
         }
 
