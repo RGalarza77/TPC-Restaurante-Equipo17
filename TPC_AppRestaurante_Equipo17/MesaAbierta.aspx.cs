@@ -57,8 +57,8 @@ namespace TPC_AppRestaurante_Equipo17
                         lblListaSinPedidos.Visible = true;
                     }
 
-                    filtrarListaInsumos();
-                    
+                    cargarListadoInsumos();
+
 
                 }
             }
@@ -89,104 +89,18 @@ namespace TPC_AppRestaurante_Equipo17
             }
         }
 
-        protected void filtrarListaInsumos()
+        protected void cargarListadoInsumos()
         {
-            try
-            {
-                List<Insumo> listaPlatoPrincipal = new List<Insumo>();
-                List<Insumo> listaPostre = new List<Insumo>();
-                List<Insumo> listaBebidas = new List<Insumo>();
-
-                InsumoNegocio insumoNegocio = new InsumoNegocio();
-                List<Insumo> listaInsumos = insumoNegocio.listar();
-
-
-
-                if (listaInsumos != null && listaInsumos.Count > 0)
-                {
-                    foreach (Insumo insumo in listaInsumos)
-                    {
-                        switch (insumo.Categoria)
-                        {
-                            case 1: // plato principal
-                                listaPlatoPrincipal.Add(insumo);
-                                break;
-                            case 2: // bebidas
-                                listaBebidas.Add(insumo);
-                                break;
-                            case 3: // postres
-                                listaPostre.Add(insumo);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    dgvPrincipal.DataSource = listaPlatoPrincipal;
-                    dgvBebida.DataSource = listaBebidas;
-                    dgvPostre.DataSource = listaPostre;
-
-                    dgvPrincipal.DataBind();
-                    dgvPostre.DataBind();
-                    dgvBebida.DataBind();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        protected void dgvPrincipal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            agregarInsumo(dgvPrincipal);
-        }
-
-        protected void dgvBebida_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            agregarInsumo(dgvBebida);
-        }
-
-        protected void dgvPostre_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            agregarInsumo(dgvPostre);
-        }
-
-        private void agregarInsumo(GridView gridView)
-        {
-            List<Insumo> nuevaListaInsumos = Session["listaPedidos"] != null
-                ? (List<Insumo>)Session["listaPedidos"]
-                : new List<Insumo>();
-
             InsumoNegocio insumoNegocio = new InsumoNegocio();
-            List<Insumo> lista = insumoNegocio.listar();
 
-            int idInsumo = int.Parse(gridView.SelectedDataKey.Value.ToString());
-            bool existe = false;
+            repPrincipal.DataSource = insumoNegocio.listarPrincipal();
+            repPrincipal.DataBind();
 
-            if (idInsumo > 0)
-            {
-                Insumo insumoAgregado = lista.Find(x => x.Id == idInsumo);
+            repPostres.DataSource = insumoNegocio.listarPostres();
+            repPostres.DataBind();
 
-                foreach (Insumo insumo in nuevaListaInsumos)
-                {
-                    if (insumo.Id == insumoAgregado.Id)
-                    {
-                        existe = true;
-                        insumo.Cantidad++;
-                        break;
-                    }
-                }
-
-                if (!existe)
-                {
-                    insumoAgregado.Cantidad = 1;
-                    nuevaListaInsumos.Add(insumoAgregado);
-                }
-
-                Session["listaPedidos"] = nuevaListaInsumos;
-                Response.Redirect("MesaAbierta.aspx", false);
-            }
+            repBebidas.DataSource = insumoNegocio.listarBebidas();
+            repBebidas.DataBind();
         }
 
         protected void btnSumar_Click(object sender, EventArgs e)
@@ -273,6 +187,46 @@ namespace TPC_AppRestaurante_Equipo17
                     return;
                 }
             }
+        }
+
+        protected void btnAgregarInsumo_Click(object sender, EventArgs e)
+        {
+            Button btnAgregarInsumo = (Button)sender;
+            int idInsumo = int.Parse(btnAgregarInsumo.CommandArgument);
+
+            List<Insumo> nuevaListaInsumos = Session["listaPedidos"] != null
+                ? (List<Insumo>)Session["listaPedidos"]
+                : new List<Insumo>();
+
+            InsumoNegocio insumoNegocio = new InsumoNegocio();
+            List<Insumo> lista = insumoNegocio.listar();
+
+            bool existe = false;
+
+            if (idInsumo > 0)
+            {
+                Insumo insumoAgregado = lista.Find(x => x.Id == idInsumo);
+
+                foreach (Insumo insumo in nuevaListaInsumos)
+                {
+                    if (insumo.Id == insumoAgregado.Id)
+                    {
+                        existe = true;
+                        insumo.Cantidad++;
+                        break;
+                    }
+                }
+
+                if (!existe)
+                {
+                    insumoAgregado.Cantidad = 1;
+                    nuevaListaInsumos.Add(insumoAgregado);
+                }
+
+                Session["listaPedidos"] = nuevaListaInsumos;
+                Response.Redirect("MesaAbierta.aspx", false);
+            }
+
         }
     }
 }

@@ -69,31 +69,31 @@ namespace TPC_AppRestaurante_Equipo17
         protected global::System.Web.UI.WebControls.TextBox tbxComentario;
 
         /// <summary>
-        /// Control dgvPrincipal.
+        /// Control repPrincipal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvPrincipal;
+        protected global::System.Web.UI.WebControls.Repeater repPrincipal;
 
         /// <summary>
-        /// Control dgvPostre.
+        /// Control repPostres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvPostre;
+        protected global::System.Web.UI.WebControls.Repeater repPostres;
 
         /// <summary>
-        /// Control dgvBebida.
+        /// Control repBebidas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvBebida;
+        protected global::System.Web.UI.WebControls.Repeater repBebidas;
 
         /// <summary>
         /// Control repListaPedido.

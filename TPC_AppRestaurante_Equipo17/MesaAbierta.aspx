@@ -94,43 +94,72 @@
                                         <div class="tab-content" id="nav-tabContent">
                                             <%--Menu Platos pricipales--%>
                                             <div class="tab-pane fade show active" id="nav-principal" role="tabpanel" aria-labelledby="nav-principal-tab" tabindex="0">
-                                                <asp:GridView runat="server" ID="dgvPrincipal" OnSelectedIndexChanged="dgvPrincipal_SelectedIndexChanged" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped">
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" ControlStyle-CssClass="form-check-label" />
-                                                        <asp:CheckBoxField HeaderText="Pedir" DataField="Agregado" ControlStyle-CssClass="form-check-input me-1" />
-                                                        <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Agregar" />
 
-                                                    </Columns>
-                                                </asp:GridView>
+                                                <asp:UpdatePanel runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Repeater runat="server" ID="repPrincipal">
+                                                            <HeaderTemplate>
+                                                                <ul class="list-group list-group-numbered">
+                                                            </HeaderTemplate>
+                                                            <ItemTemplate>
+                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <%# Eval("Nombre")%>
+                                                                    <asp:Button runat="server" ID="btnAgregarInsumo" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarInsumo_Click" CommandArgument='<%# Eval("Id") %>' ></asp:Button>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                </ul>
+                                                            </FooterTemplate>
+                                                        </asp:Repeater>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
 
                                             </div>
 
                                             <%--Menu Postres--%>
                                             <div class="tab-pane fade" id="nav-postre" role="tabpanel" aria-labelledby="nav-postre-tab" tabindex="0">
-                                                <asp:GridView runat="server" ID="dgvPostre" OnSelectedIndexChanged="dgvPostre_SelectedIndexChanged" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped">
-
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" ControlStyle-CssClass="form-check-label" />
-                                                        <asp:CheckBoxField HeaderText="Pedir" DataField="Agregado" ControlStyle-CssClass="form-check-input me-1" />
-                                                        <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Agregar" />
-                                                    </Columns>
-
-                                                </asp:GridView>
+                                                <asp:UpdatePanel runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Repeater runat="server" ID="repPostres">
+                                                            <HeaderTemplate>
+                                                                <ul class="list-group list-group-numbered">
+                                                            </HeaderTemplate>
+                                                            <ItemTemplate>
+                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <%# Eval("Nombre")%>
+                                                                    <asp:Button runat="server" ID="btnAgregarInsumo" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarInsumo_Click" CommandArgument='<%# Eval("Id") %>' ></asp:Button>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                </ul>
+                                                            </FooterTemplate>
+                                                        </asp:Repeater>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
 
                                             </div>
 
                                             <%--Menu Bebidas--%>
                                             <div class="tab-pane fade" id="nav-bebida" role="tabpanel" aria-labelledby="nav-bebida-tab" tabindex="0">
-                                                <asp:GridView runat="server" ID="dgvBebida" OnSelectedIndexChanged="dgvBebida_SelectedIndexChanged" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped">
+                                                <asp:UpdatePanel runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Repeater runat="server" ID="repBebidas">
+                                                            <HeaderTemplate>
+                                                                <ol class="list-group list-group-numbered">
+                                                            </HeaderTemplate>
+                                                            <ItemTemplate>
 
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" ControlStyle-CssClass="form-check-label" />
-                                                        <asp:CheckBoxField HeaderText="Pedir" DataField="Agregado" ControlStyle-CssClass="form-check-input me-1" />
-                                                        <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Agregar" />
-
-                                                    </Columns>
-
-                                                </asp:GridView>
+                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <%# Eval("Nombre")%>
+                                                                    <asp:Button runat="server" ID="btnAgregarInsumo" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarInsumo_Click" CommandArgument='<%# Eval("Id") %>' ></asp:Button>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                </ol>
+                                                            </FooterTemplate>
+                                                        </asp:Repeater>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             </div>
                                         </div>
 

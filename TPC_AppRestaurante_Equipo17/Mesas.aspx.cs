@@ -90,7 +90,7 @@ namespace TPC_AppRestaurante_Equipo17
             if (ddlSalones.SelectedItem.Value != null)
             {
                 List<Sala> temporalSalas = negocioSala.listar();
-                List<Mesa> temporalMesas = (List<Mesa>)Session["listaMesas"];
+                List<Mesa> temporalMesas = negocioMesa.listar();
                 idSala = int.Parse(ddlSalones.SelectedItem.Value);
 
                 Mesa mesa = new Mesa();

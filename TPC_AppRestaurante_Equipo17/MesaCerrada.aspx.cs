@@ -113,7 +113,7 @@ namespace TPC_AppRestaurante_Equipo17
 
             /*Mandar por parametro id y redireccionar a la ventana de mesaAbierta */
 
-            Response.Redirect("MesaAbierta.aspx?Id=" + IdMesa);
+            Response.Redirect("MesaAbierta.aspx?Id=" + IdMesa.ToString());
 
 
         }
